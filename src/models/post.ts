@@ -7,7 +7,6 @@ export interface Post {
     author: User;
     likes: User[];
     edited: Boolean;
-    createdAt: Date;
 }
 
 const postSchema = new Schema(
@@ -33,14 +32,11 @@ const postSchema = new Schema(
             default: false,
             required: false,
         },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-        },
     },
     {
         timestamps: true,
     }
+
 )
 
 const Post = mongoose.model<Post>("Post", postSchema);

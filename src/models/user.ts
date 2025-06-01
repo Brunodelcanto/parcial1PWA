@@ -3,7 +3,7 @@ import mongoose, {Schema, Document} from "mongoose";
 export interface User extends Document {
     username: String;
     email: String;
-    createdAt: Date;
+    isActive: Boolean;
 }
 
 const userSchema = new Schema(
@@ -17,11 +17,10 @@ const userSchema = new Schema(
             required: true,
             unique: true,
         },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-        }
-
+        isActive: {
+            type: Boolean,
+            default: true,
+        },
     },
     {
         timestamps: true,
