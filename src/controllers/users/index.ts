@@ -19,6 +19,7 @@ const createUser = async (req: Request, res: Response) => {
 
 const getUsers = async (req: Request, res: Response) => {
     try {
+        // filtramos para que solo nos muestre los usuarios activos
         const users = await User.find({isActive: true});
         res.status(200).json({
             message: "Fetched successfully",
@@ -83,6 +84,7 @@ const updateUser = async (req: Request , res: Response) => {
     }
 };
 
+// baja logica de usuario 
 const deactivateUser = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;

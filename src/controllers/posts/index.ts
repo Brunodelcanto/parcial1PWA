@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import User from "../../models/user";
 import Post from "../../models/post";
 
 const createPost = async (req: Request, res: Response) => {
@@ -18,6 +17,7 @@ const createPost = async (req: Request, res: Response) => {
     }
 };
 
+// con el metodo popoulate podemos mostrar los datos de los usuarios que han creado el post y los que han dado like
 const getPosts = async (req: Request, res: Response) => {
     try {
         const posts = await Post.find().populate("author").populate("likes");
@@ -56,6 +56,9 @@ const getPostById = async (req: Request, res: Response) => {
     }
 };
 
+// esta funcion lo que nos permite es actualizar el titulo y el contenido del post
+// sin dejar que actualice otros campos
+// y automaticamente el estado de edited pasa a ser true
 const updateTitleAndContent = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
@@ -77,7 +80,7 @@ const updateTitleAndContent = async (req: Request, res: Response) => {
             return;
         }
         res.status(200).json({
-            message: "Post updates successfully",
+            message: "Post updated successfully",
             data: post,
             error: false,
         });
